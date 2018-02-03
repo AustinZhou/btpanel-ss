@@ -197,6 +197,7 @@
 				tbody += '<tr><td>'+userList[i]['port']+'</td><td>'+userList[i]['password']+'</td><td style="text-align: right;"><a class="btlink" onclick="SetPassword(\''+userList[i]['port']+'\')">修改密码</a> | <a class="btlink" onclick="RemoveUser(\''+userList[i]['port']+'\')">删除</a></td></tr>';
 			}
 			$("#userlist").html(tbody);
+			$('#ss_password').val(RandomStrPwd(16));
 		});
 	}
 	
