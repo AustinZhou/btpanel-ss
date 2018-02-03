@@ -10,5 +10,9 @@
 <p>cd btpanel-ss</p>
 <p>bash install.sh install</p>
 
+<h2>卸载</h2>
+<p>先在可视化界面中删除所有用户端口,再执行以下命令</p>
+<p>bash install.sh uninstall</p>
+
 <h2>使用</h2>
 <p>直接登陆宝塔Linux面板 >> 打开软件列表页面 >> 转到列表第二页即可看到新安装的shadowsocks插件</p>
