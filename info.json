@@ -1,0 +1,15 @@
+{
+	"title":"Shadowsocks",
+	"tip":"lib",
+	"name":"ss",
+	"type":"扩展",
+	"ps":"Shadowsocks管理器",
+	"versions":"1.0",
+	"shell":"ss.sh",
+	"checks":"/www/server/panel/plugin/ss",
+	"author":"",
+	"home":"",
+	"date":"2018-02-02",
+	"default":false,
+	"display":0
+}

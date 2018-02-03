@@ -1,0 +1,375 @@
+<style>
+.tasklist{
+	padding-left: 0;
+	padding-top: 0;
+}
+.tab-con{
+	margin-left: 15px;
+}
+.tab-con .user-list{
+	overflow: hidden;
+}
+.tab-con .clearfixDns>p{
+	float: left;
+    margin-top: 35px;
+    margin-left: 25px;
+}
+.tab-con .clearfixDns>p button{
+	margin-right: 15px;
+    padding-left: 18px;
+    padding-right: 18px;
+}
+.tab-con .user-list .SetAggregateOne p{
+	margin-top: 15px;
+}
+.tab-con .user-list .SetAggregateOne p span{
+	margin-right:15px;
+    display: inline-block;
+    width: 51px;
+    text-align: right;
+}
+.tab-con .user-list .SetAggregateOne p input{
+	height: 30px;
+	width: 240px;
+	padding-left: 10px;
+	font-size: 13px;
+}
+.tab-con .user-list .SetAggregateOne{
+	width: 325px;
+	float: left;
+}
+.tab-con .SetZone .Setshow{
+	margin: 15px 0;
+	font-size: 14px;
+}
+.tab-con .SetZone .Setshow span{
+	margin-right: 5px;
+	font-size: 14px;
+}
+.tab-con .SetZont .SetTime button{
+	margin-top: -5px;
+	margin-right: 15px;
+	padding-left: 18px;
+	padding-right: 18px;
+	margin-left: 20px;
+}
+.tab-con .SetZone .SetTime{
+	margin-left: 20px;
+	margin-bottom: 20px;
+	margin: 0 10px 20px 0px;
+}
+.tab-con .SetZone .SetTime select{
+	height: 30px;
+	font-size: 14px;
+}
+.tab-con .SetTime span{
+	margin-right: 10px;
+}
+.tab-con .clearfixSwap>p{
+	clear: both;
+    margin-top: 15px;
+    margin-bottom: 17px;
+}
+.tab-con .clearfixSwap>p span{
+	margin-right: 15px;
+}
+.tab-con .clearfixSwap>p input{
+	height: 30px;
+    width: 130px;
+	padding-left: 10px;
+	margin-left: 10px;
+	font-size: 13px;
+}
+.tab-con .clearfixSwap>p button,
+.tab-con .SetTime button{
+	margin-top: -5px;
+	margin-right: 15px;
+	padding-left: 18px;
+	padding-right: 18px;
+	margin-left: 20px;
+}
+.tab-con .SetSwap .SetAggregateTwo{
+	overflow: hidden;
+    margin-top: 14px;
+	margin-bottom:20px;
+}
+.tab-con .SetSwap .SetAggregateTwo p{
+    float: left;
+	margin-right:50px;
+}
+.tab-con .SetSwap .SetAggregateTwo size{
+	font-size:14px;
+}
+.tab-con .SetSwap .SetAggregateTwo span{
+	margin-right: 10px;
+}
+.tab-con .user-list .clearfixDns{
+	overflow: hidden;
+	margin-bottom: 25px;
+}
+.tasklist .tab-nav{
+	background-color: #F0F0F1;
+    width: 125px;
+    height: 550px;
+    float: left;
+}
+.tasklist .tab-nav span{
+	display: block;
+	width: 125px;
+	padding-right:0 ;
+	height: 40px;
+	line-height: 40px; 
+	padding-left: 20px; 
+	position: relative; 
+	cursor: pointer;
+	border:none;
+	background: #F0F0F1;
+}
+.tasklist .tab-nav span.on{
+	background-color:#fff ;
+}
+</style>
+<div class="tasklist">
+	<div class="tab-nav">
+		<span class="on">用户端口</span>
+		<span class="">配置项</span>
+		<span class="">服务</span>
+	</div>
+	<div class="tab-con">
+		<div id="root" class="SetDns">
+			<div class="divtable" style="width: 520px;">
+				<input class="bt-input-text mr5" name="ss_port" type="number" value="" max="65535" min="81" style="width:80px" placeholder="端口" />
+				<input class="bt-input-text mr5" name="ss_password" id="ss_password" type="text" value="" style="width:200px" placeholder="密码" />
+				<span title="随机密码" style="margin-right: 10px;" class="glyphicon glyphicon-repeat cursor" onclick="$('#ss_password').val(RandomStrPwd(16));"></span>
+				<button class="btn btn-default btn-sm va0" onclick="CreateUser();">添加</button>
+				<table class="table table-hover" style="margin-top: 10px; max-height: 380px; overflow: auto;">
+					<thead>
+						<tr>
+							<th>端口</th>
+							<th>密码</th>
+							<th style="text-align: right;">操作</th>
+						</tr>
+					</thead>
+					<tbody id="userlist"></tbody>
+				</table>
+			</div>
+			<ul class="help-info-text c7 mtb15" style="padding-top:30px">
+				<li style="color: red;">请尊守当地法律,不得将本插件商用!</li>
+				<li>客户端工具Windows版: <a class="btlink" href="/download?filename=%2Fwww%2Fserver%2Fpanel%2Fplugin%2Fss%2Fshadowsocks.zip" target="_blank">点击下载</a></li>
+				<li>客户端工具Android版: <a class="btlink" href="/download?filename=%2Fwww%2Fserver%2Fpanel%2Fplugin%2Fss%2Fshadowsocks-nightly-4.2.5.apk" target="_blank">点击下载</a></li>
+			</ul>
+		</div>
+		<div id="swap" class="SetSwap" style="display: none;">
+			<div class="conf_p" style="margin-bottom:0">
+				<p><span>server</span><input style="width: 120px;" class="bt-input-text mr5" name="ss_server" value="" type="text"><font>监听IP,请勿随意修改</font></p>
+				<p><span>method</span>
+					<select style="width: 120px;margin-left: -4px;" class="bt-input-text mr5" name="ss_method">
+						<option value="aes-256-cfb">aes-256-cfb</option>
+						<option value="aes-192-cfb">aes-192-cfb</option>
+						<option value="aes-128-cfb">aes-128-cfb</option>
+						<option value="aes-256-ctr">aes-256-ctr</option>
+						<option value="aes-192-ctr">aes-192-ctr</option>
+						<option value="aes-128-ctr">aes-128-ctr</option>
+						<option value="camellia-256-cfb">camellia-256-cfb</option>
+						<option value="camellia-192-cfb">camellia-192-cfb</option>
+						<option value="camellia-128-cfb">camellia-128-cfb</option>
+						<option value="aes-256-gcm">aes-256-gcm</option>
+						<option value="aes-192-gcm">aes-192-gcm</option>
+						<option value="aes-128-gcm">aes-128-gcm</option>
+						<option value="rc4-md5">rc4-md5</option>
+						<option value="bf-cfb">bf-cfb</option>
+						<option value="chacha20">chacha20</option>
+						<option value="chacha20-ietf">chacha20-ietf</option>
+						<option value="chacha20-ietf-poly1305">chacha20-ietf-poly1305</option>
+					</select>
+					<font>加密方式</font></p>
+				<p><span>timeout</span><input style="width: 120px;" class="bt-input-text mr5" name="ss_timeout" value="" type="number"><font>连接超时时间</font></p>
+				<p><span>local_address</span><input style="width: 120px;" class="bt-input-text mr5" name="ss_local_address" value="" type="text"><font>客户机本机环回地址</font></p>
+				<p><span>local_port</span><input style="width: 120px;" class="bt-input-text mr5" name="ss_local_port" value="" type="number"><font>客户机端口号</font></p>
+				<div style="margin-top:10px; padding-right:230px" class="text-right"><button class="btn btn-success btn-sm" onclick="SetOptions()">保存</button></div>
+			</div>
+			<ul class="help-info-text c7 mtb15" style="padding-top:30px">
+				<li>请尊守当地法律,不得将本插件商用!</li>
+			</ul>
+		</div>
+		<div class="soft-man-con" style="display: none;">
+			<p class="status">当前状态：<span>开启</span><span style="color: #20a53a; margin-left: 3px;" class="glyphicon glyphicon glyphicon-play"></span></p>
+			<div class="sfm-opt">
+				<button class="btn btn-default btn-sm" onclick="SetServiceStatus('stop')">停止</button>	
+				<button class="btn btn-default btn-sm" onclick="SetServiceStatus('restart')">重启</button>
+			</div>
+			<ul class="help-info-text c7 mtb15" style="padding-top:30px">
+				<li>请尊守当地法律,不得将本插件商用!</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<script type="javascript/text">
+	$(".tab-nav span").click(function(){
+		var i = $(this).index();
+		$(this).addClass("on").siblings().removeClass("on");
+		$(".tab-con > div").hide().eq(i).show();
+		switch(i){
+			case 0:
+				GetUsers();
+				break;
+			case 1:
+				GetOptions();
+				break;
+			case 2:
+				GetStatus();
+				break;
+		}
+	});
+	
+	function GetStatus(){
+		var loadT = layer.msg('正在获取,请稍候...',{icon:16,time:0});
+		$.get('/plugin?action=a&name=ss&s=get_status',function(status){
+			layer.close(loadT);
+			if(status !== true){
+				$(".status").html('当前状态：<span id="ss_status_str">关闭</span><span style="color: red; margin-left: 3px;" class="glyphicon glyphicon-pause"></span>');
+				$(".sfm-opt").html('<button class="btn btn-default btn-sm" onclick="SetServiceStatus(\'start\')">启动</button>	');
+			}else{
+				$(".status").html('当前状态：<span>开启</span><span style="color: #20a53a; margin-left: 3px;" class="glyphicon glyphicon glyphicon-play"></span>');
+				$(".sfm-opt").html('<button class="btn btn-default btn-sm" onclick="SetServiceStatus(\'stop\')">停止</button><button class="btn btn-default btn-sm" onclick="SetServiceStatus(\'restart\')">重启</button>');
+			}
+		});
+	}
+	
+	function SetServiceStatus(status){
+		var loadT = layer.msg('正在处理,请稍候...',{icon:16,time:0});
+		$.post('/plugin?action=a&name=ss&s=service_admin',{status:status},function(rdata){
+			layer.close(loadT);
+			if(rdata !== true) {
+				layer.msg('操作失败!',{icon:2});
+				return;
+			}
+			layer.msg('操作成功!',{icon:1});
+			GetStatus();
+		});
+	}
+	
+	
+	function GetOptions(){
+		var loadT = layer.msg('正在获取,请稍候...',{icon:16,time:0});
+		$.get('/plugin?action=a&name=ss&s=get_options',function(options){
+			layer.close(loadT);
+			$("input[name='ss_server']").val(options.server);
+			$("select[name='ss_method']").val(options.method);
+			$("input[name='ss_timeout']").val(options.timeout);
+			$("input[name='ss_local_address']").val(options.local_address);
+			$("input[name='ss_local_port']").val(options.local_port);
+		});
+	}
+	
+	function SetOptions(){
+		data = {
+			server:$("input[name='ss_server']").val(),
+			method:$("select[name='ss_method']").val(),
+			timeout:$("input[name='ss_timeout']").val(),
+			local_address:$("input[name='ss_local_address']").val(),
+			local_port:$("input[name='ss_local_port']").val()
+		}
+		var loadT = layer.msg('正在处理,请稍候...',{icon:16,time:0});
+		$.post('/plugin?action=a&name=ss&s=set_options',data,function(rdata){
+			layer.close(loadT);
+			if(rdata !== true) {
+				layer.msg('设置失败!',{icon:2});
+				return;
+			}
+			layer.msg('设置成功!',{icon:1});
+			setTimeout(function(){
+				GetOptions();
+			},1000);
+			
+		});
+	}
+	
+	function GetUsers(){
+		var loadT = layer.msg('正在获取,请稍候...',{icon:16,time:0});
+		$.get('/plugin?action=a&name=ss&s=get_users',function(userList){
+			layer.close(loadT);
+			var tbody = '';
+			for(var i=0;i<userList.length;i++){
+				tbody += '<tr><td>'+userList[i]['port']+'</td><td>'+userList[i]['password']+'</td><td style="text-align: right;"><a class="btlink" onclick="SetPassword(\''+userList[i]['port']+'\')">修改密码</a> | <a class="btlink" onclick="RemoveUser(\''+userList[i]['port']+'\')">删除</a></td></tr>';
+			}
+			$("#userlist").html(tbody);
+		});
+	}
+	
+	var messageboxIndex = 0;
+	
+	function SetPassword(port){
+		messageboxIndex = layer.open({
+			type: 1,
+			shift: 5,
+			closeBtn: 2,
+			area: '320px', 
+			title: '修改端口['+port+']密码',
+			content: '<div class="bt-form pd20 pb70">\
+						<div class="line">\
+						<input type="text" class="bt-input-text" name="new_password" id="MyPassword" value="" placeholder="新的密码" style="width:250px" /><span title="随机密码" style="margin-left: 10px;" class="glyphicon glyphicon-repeat cursor" onclick="repeatPwd(16)"></span>\
+						</div>\
+						<div class="bt-form-submit-btn">\
+						<button type="button" class="btn btn-danger btn-sm" onclick="layer.close(messageboxIndex)">取消</button>\
+						<button id="CreateFileBtn" type="button" class="btn btn-success btn-sm" onclick="ToSetPassword(\''+port+'\')">修改</button>\
+						</div>\
+					</div>'
+		});
+	}
+	
+	function ToSetPassword(port){
+		var spassword = $('#MyPassword').val();
+		var loadT = layer.msg('正在修改,请稍候...',{icon:16,time:0});
+		$.post('/plugin?action=a&name=ss&s=create_user',{port:port,password:spassword},function(rdata){
+			layer.close(loadT);
+			if(rdata !== true) {
+				layer.msg('修改失败!',{icon:2});
+				return;
+			}
+			layer.msg('修改成功!',{icon:1});
+			layer.close(messageboxIndex);
+			GetUsers();
+		});
+	}
+	
+	function RemoveUser(port){
+		SafeMessage('删除用户端口','您真的要删除['+port+']端口吗？',function(){
+			var loadT = layer.msg('正在删除,请稍候...',{icon:16,time:0});
+			$.post('/plugin?action=a&name=ss&s=remove_user',{port:port},function(rdata){
+				layer.close(loadT);
+				if(rdata !== true) {
+					layer.msg('删除失败!',{icon:2});
+					return;
+				}
+				layer.msg('删除成功!',{icon:1});
+				GetUsers();
+			});
+		});
+	}
+	
+	
+	function CreateUser(){
+		var data = {
+			port:$("input[name='ss_port']").val(),
+			password:$("input[name='ss_password']").val()
+		}
+		if(data.port > 65535 || data.port < 81){
+			layer.msg('端口范围错误(81-65535)!',{icon:2});
+			return;
+		}
+		var loadT = layer.msg('正在添加,请稍候...',{icon:16,time:0});
+		$.post('/plugin?action=a&name=ss&s=create_user',data,function(rdata){
+			layer.close(loadT);
+			if(rdata !== true) {
+				layer.msg('添加失败!',{icon:2});
+				return;
+			}
+			layer.msg('添加成功!',{icon:1});
+			$("input[name='ss_port']").val('');
+			$("input[name='ss_password']").val('');
+			GetUsers();
+		});
+	}
+	GetUsers();
+</script>
