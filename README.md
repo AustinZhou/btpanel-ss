@@ -1,9 +1,9 @@
 # 基于宝塔Linux面板的shadowsocks可视化管理插件
 
 <h2>前置前条</h2>
-<p>1、宝塔Linux面板</p>
-<p>2、python-pip</p>
-<p>3、Centos/Ubuntu</p>
+<p>依赖主体：宝塔Linux面板</p>
+<p>依赖组件：python-pip(一般自带)</p>
+<p>操作系统：Centos/Ubuntu</p>
 
 <h2>安装</h2>
 <p>git clone https://github.com/referer001/btpanel-ss.git</p>
