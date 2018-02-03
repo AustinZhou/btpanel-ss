@@ -2,7 +2,6 @@
 
 <h2>前置前条</h2>
 <p>依赖主体：宝塔Linux面板</p>
-<p>依赖组件：python-pip(一般自带)</p>
 <p>操作系统：Centos/Ubuntu</p>
 
 <h2>安装</h2>
